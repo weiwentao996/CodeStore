@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.train.day21mybatis.RoleMapper">
+    <!--配置查询到的列与实体类属性的映射 -->
+    <resultMap id="roleInfo" type="role">
+        <!--id表示主键，property从类中来，意为属性，column从表中来，意为列-->
+        <id property="id" column="id"></id>
+        <!--result其他属性-->
+        <result property="roleName" column="role_name"></result>
+        <result property="note" column="note"></result>
+    </resultMap>
+    <!--resultMap结果映射可以自己配置属性与列的映射
+        resultType结果根据列名与属性名是否相同，进行映射,相同则映射，否则无法完成映射
+        resultType="com.train.day21mybatis.Role"
+        不能同时出现resultType与resultMap
+    -->
+    <select id="findAllRole" resultMap="roleInfo">
+        select *  from t_role
+    </select>
+    <!--parameterType 指定参数类型-->
+    <select id="findRoleById" resultMap="roleInfo" parameterType="Integer">
+        select * from t_role where id = #{id}
+    </select>
+    <insert id="insertRole"  parameterType="role" >
+        insert into t_role values (null,#{roleName},#{note})
+    </insert>
+  <!--  如果想做到修改那些字段，则sql就拼接那些字段，需要使用动态sql-->
+    <update id="updateRole" parameterType="role">
+        update t_role set role_name = #{roleName},note = #{note} where id = #{id}
+    </update>
+    <!--delete方法 -->
+    <delete id="deleteRoleById" parameterType="Integer">
+        delete from t_role where id = #{id}
+    </delete>
+</mapper>
