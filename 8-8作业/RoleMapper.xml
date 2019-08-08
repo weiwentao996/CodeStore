@@ -27,9 +27,19 @@
         insert into t_role values (null,#{roleName},#{note})
     </insert>
   <!--  如果想做到修改那些字段，则sql就拼接那些字段，需要使用动态sql-->
+
+
     <update id="updateRole" parameterType="role">
-        update t_role set role_name = #{roleName},note = #{note} where id = #{id}
+
+        update t_role
+        <set>
+            <if test="roleName != null">role_name = #{roleName},</if>
+            <if test="note != null">note = #{note},</if>
+        </set>
+        where id = #{id}
     </update>
+
+
     <!--delete方法 -->
     <delete id="deleteRoleById" parameterType="Integer">
         delete from t_role where id = #{id}

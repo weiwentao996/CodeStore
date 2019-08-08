@@ -19,15 +19,15 @@ public class Main {
 //                roleList.forEach(System.out::println);
 //            }
             //Role role = roleMapper.findRoleById(2);
-      /*      Role role1 = new Role();
-            role1.setRoleName("榜一大哥");
-            role1.setNote("连夜跑路");*/
-/*            role1.setId(5);
-            int count = roleMapper.updateRole(role1);*/
-           //int count =  roleMapper.insertRole(role1);
-            int count = roleMapper.deleteRoleById(6);
+            Role role1 = new Role();
+            role1.setRoleName("乔碧萝殿下");
+            role1.setId(2);
+            int count = roleMapper.updateRole(role1);
+//           //int count =  roleMapper.insertRole(role1);
+//            int count = roleMapper.deleteRoleById(6);
             sqlSession.commit();
-            System.out.println("删除的条数" + count);
+//            System.out.println("删除的条数" + count);
+           System.out.println("更新的条数" + count);
         } catch (Exception e) {
 
         } finally {
