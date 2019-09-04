@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+</head>
+<body>
+<div id="head" class="head">
+
+
+    <ul class="menu">
+        <li><img src="https://ossweb-img.qq.com/images/lol/v3/logo.png"></li>
+        <a href="hero.html">
+            <li>
+                <span class="span-c">游戏资料</span>
+                <span class="span-e">GAME INFO</span>
+            </li>
+        </a>
+        <li>
+            <span class="span-c">商城/合作</span>
+            <span class="span-e">STORE</span>
+        </li>
+        <li>
+            <span class="span-c">社区互动</span>
+            <span class="span-e">COMMUNITY</span>
+
+        </li>
+        <li>
+            <span class="span-c">赛事官网</span>
+            <span class="span-e">ESPORTS</span>
+        </li>
+        <li>
+            <span class="span-c">自助系统</span>
+            <span class="span-e">SYSTEM</span>
+        </li>
+        <a href="addHero.html">
+            <li>
+                <span class="span-c">插入英雄</span>
+                <span class="span-e">ADD HERO</span>
+            </li>
+        </a>
+        <ul class="droup" id="droup">
+            <li>英雄资料库</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+        </ul>
+    </ul>
+</div>
+<div id="skin-box" class="skin-box">
+    <div class="skin-name"></div>
+    <div class="tiny-img"></div>
+    <div class="left-list">
+        <div id="defailDATA" class="defail-data">
+            <h1 id="DATAname">
+                <!--动态加载ukname-->
+            </h1>
+            <h2 id="DATAtitle">
+                <!--动态加载nickname-->
+            </h2>
+            <div id="DATAtags" class="defail-tags">
+                <!--动态加载span标签-->
+
+
+            </div>
+            <dl id="DATAinfo" class="defail-stat">
+                <dt>物理攻击</dt>
+                <!--动态加载up1-->
+                <dd><i class="up up1" ></i></dd>
+                <dt>魔法攻击</dt>
+                <dd><i class="up up2" ></i></dd>
+                <dt>防御能力</dt>
+                <dd><i class="up up3" ></i></dd>
+                <dt>上手难度</dt>
+                <dd><i class="up up4" ></i></dd>
+            </dl>
+            <div class="defail-buy">
+                <a id="defailBuy" href="#"  class="commspr commbtn-buy">购买英雄</a>
+            </div>
+        </div>
+    </div>
+    <div class="main-img"></div>
+    <div class="infoleftcont">
+        <h4 class="infotitle">背景故事</h4>
+        <div class="colbox bgstroy">
+            <div id="DATAlore"></div>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/myjs.js" rel="script"></script>
+
+<script>
+
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+
+    var skinData
+    var flag
+    var ukname = getQueryVariable("ukname")
+    $.ajax({
+
+        url: "http://localhost:8080/lolherolist/queryTypeHero.do",
+        type: "get",
+        dataType: "json",  // text-》data(string)    json->(js中的json对象)
+        success: function (data) {
+            var html = ''
+            ukname = decodeURI(ukname)
+            $.each(data, function (i, value) {
+
+                if (ukname == value.hero.ukName) {
+                    var type
+                    switch(value.heroType) {
+
+                        case "mage":
+                            type = "法师"
+                            break;
+                        case "fighter":
+                            type = "战士"
+                            break;
+                        case "marksman":
+                            type = "射手"
+                            break;
+                        case "tank":
+                            type = "坦克"
+                            break;
+                        case "assassin":
+                            type = "刺客"
+                            break;
+                        case "support":
+                            type = "辅助"
+                            break;
+                        default:
+                            type = ""
+                    }
+                    html += '<span>'+ type +'</span>'
+                }
+            })
+            $('.defail-tags').html(html)
+        }
+
+    })
+    $.ajax({
+        url: "http://localhost:8080/lolherolist/findHero.do?ukname=" + ukname,
+        type: "get",
+        dataType: "json",  // text-》data(string)    json->(js中的json对象)
+        success: function (data) {
+            var up1 =data.physicPower + "0%"
+            var up2 =data.magicPower + "0%"
+            var up3 =data.defencePower + "0%"
+            var up4 =data.handHard + "0%"
+
+            $("#DATAtitle").text(data.nickname)
+            $("#DATAname").text(data.ukName)
+            $(".up1").css("width",up1);
+            $(".up2").css("width",up2);
+            $(".up3").css("width",up3);
+            $(".up4").css("width",up4);
+        }
+    })
+    $.ajax({
+
+        url: "http://localhost:8080/lolherolist/heroInfo.do?ukname=" + ukname,
+        type: "get",
+        dataType: "json",  // text-》data(string)    json->(js中的json对象)
+        success: function (data) {
+            skinData = data
+
+            var html = ''
+            // 当请求成功，服务器响应的数据就在data里面
+            $.each(data, function (i, value) {
+                flag = value.bigImg + ""
+                if (flag != "") {
+                    html += '<img class="main-bgimg skin' + value.id + '" src="' + value.bigImg + '">'
+                }
+            })
+            $('.main-img').html(html)
+            html = ''
+            // 当请求成功，服务器响应的数据就在data里面
+            $.each(data, function (i, value) {
+                flag = value.tinyImg + ""
+                if (flag != "") {
+                    if (i == skinData.length - 1) {
+                        html += '<img name="' + value.id + '" class="tiny-bgimg checked" src="' + value.tinyImg + '">'
+                    } else {
+                        html += '<img name="' + value.id + '" class="tiny-bgimg" src="' + value.tinyImg + '">'
+                    }
+                }
+            })
+            $('.tiny-img').html(html)
+            html = ''
+            $.each(data, function (i, value) {
+                flag = value.bigImg + ""
+                if (flag != "") {
+                    if (i == skinData.length - 1) {
+                        html += '<span class="skin-name' + value.id + '"  >' + value.skinName + '</span>'
+                    } else {
+                        html += '<span class="skin-name' + value.id + '" style="display: none" >' + value.skinName + '</span>'
+                    }
+                }
+            })
+            $('.skin-name').html(html)
+            $(document).ready(function () {
+                $(".tiny-bgimg").hover(function () {
+                    $(this).removeClass("active")
+                })
+                $(".tiny-bgimg").mouseover(function () {
+                    $(this).addClass("active")
+
+                })
+            })
+            $(document).ready(function () {
+                $(".tiny-bgimg").click(function () {
+                    $(this).siblings().removeClass("checked")
+                    $(this).addClass("checked")
+                    var skinId = ".skin" + $(this).prop("name")
+                    var skinName = ".skin-name" + $(this).prop("name")
+                    $(skinId).siblings().css("z-index", "1")
+                    $(skinId).css("z-index", "900")
+                    $(skinName).siblings().hide()
+                    $(skinName).show();
+                })
+
+            })
+        }
+
+    })
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+
+
+</head>
+<body>
+<div id="head" class="head">
+
+
+    <ul class="menu">
+        <li><img src="https://ossweb-img.qq.com/images/lol/v3/logo.png"></li>
+        <a href="hero.html">
+            <li >
+                <span class="span-c">游戏资料</span>
+                <span class="span-e">GAME INFO</span>
+            </li>
+        </a>
+        <li >
+            <span class="span-c">商城/合作</span>
+            <span class="span-e">STORE</span>
+        </li>
+        <li>
+            <span class="span-c">社区互动</span>
+            <span class="span-e">COMMUNITY</span>
+
+        </li>
+        <li>
+            <span class="span-c">赛事官网</span>
+            <span class="span-e">ESPORTS</span>
+        </li>
+        <li>
+            <span class="span-c">自助系统</span>
+            <span class="span-e">SYSTEM</span>
+        </li>
+        <a href="addHero.html">
+            <li >
+                <span class="span-c">插入英雄</span>
+                <span class="span-e">ADD HERO</span>
+            </li>
+        </a>
+        <ul class="droup" id="droup">
+            <li>英雄资料库</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+        </ul>
+    </ul>
+</div>
+<div id="content" class="content">
+    <p class="type">英雄</p>
+    <div id="checklist">
+        <ul>
+            <li class="select-item current">
+                <span class="ms-radio"> <i class="i"></i></span>
+                <label>All</label>
+            </li>
+            <li class="select-item">
+                <span class="ms-radio"><i></i></span>
+                <label>mage</label>
+            </li>
+            <li class="select-item">
+                <span class="ms-radio"><i></i></span>
+                <label>fighter</label>
+            </li>
+            <li class="select-item">
+                <span class="ms-radio"><i></i></span>
+                <label>marksman</label>
+            </li>
+            <li class="select-item">
+                <span class="ms-radio"><i></i></span>
+                <label>tank</label>
+            </li>
+            <li class="select-item">
+                <span class="ms-radio"><i></i></span>
+                <label>assassin</label>
+            </li>
+            <li class="select-item">
+                <span class="ms-radio"><i></i></span>
+                <label>support</label>
+
+            </li>
+        </ul>
+        <div class="info-searchbox">
+            <input id="jSearchHeroInput" class="input-search" type="text" placeholder="请输入您要搜索的英雄名">
+        </div>
+    </div>
+
+    <ul class="ulhero">
+    </ul>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/myjs.js" rel="script" ></script>
+
+</body>
+
+<script>
+
+    // 浏览器（客户端）与服务器交互数据的格式：JSON,XML
+    // 发送请求到服务器，服务器会响应给浏览器数据，数据的格式便是JSON
+    // {key1:value1,key2:value2,key:value3} 表示的是一个对象
+    // {name:'张三',address:"苏州市",age:20}  单个学生对象
+    //  [{name:'张三',address:"苏州市",age:20} ,{name:'李四',address:"苏州市",age:20} ,{name:'王五',address:"苏州市",age:20} ]   
+    //  多个学生对象
+    $.ajax({
+        url: "http://localhost:8080/lolherolist/queryTypeHero.do",
+        type: "get",
+        dataType: "json",  // text-》data(string)    json->(js中的json对象)
+        success: function (data) {
+            allData = data
+        }
+    })
+    $.ajax({
+        url: "http://localhost:8080/lolherolist/queryHero.do",
+        type: "get",
+        dataType: "json",  // text-》data(string)    json->(js中的json对象)
+        success: function (data) {
+            allHero = data
+            var html = ''
+            // 当请求成功，服务器响应的数据就在data里面
+            $.each(data, function (i, value) {
+                html += '<li><a href="heroInfo.html?ukname='+ value.ukName +'" style="text-decoration: none"><img src="' + value.tinyImg + '"><p>' + value.ukName + '</p></a>'
+            })
+            $('.ulhero').html(html)
+        }
+    })
+    var allData
+    var allHero
+
+    function showHero(selectType) {
+        html = ''
+        if (selectType == "All") {
+            $.each(allHero, function (i, value) {
+                html += '<li><a href="heroInfo.html?ukname='+ value.ukName +'" style="text-decoration: none"><img src="' + value.tinyImg + '"><p>' + value.ukName + '</p></a>'
+            })
+        } else {
+            $.each(allData, function (i, value) {
+                var one = selectType
+                var two = value.heroType
+                if (one == two) {
+                    html += '<li><a href="heroInfo.html?ukname='+ value.hero.ukName +'" style="text-decoration: none"><img src="' + value.hero.tinyImg + '"><p>' + value.hero.ukName + '</p></a>'
+                }
+            })
+        }
+        $('.ulhero').html(html)
+    }
+
+    $('#checklist li').click(function () {
+        $(this).siblings('li').find('i').removeClass('i');
+        $(this).find("i").addClass('i');
+        showHero($(this).find("label").text())
+    })
+
+    $(document).ready(function () {
+        $("#jSearchHeroInput").bind('input propertychange',function(){
+
+            $("#checklist li").siblings('li').find('i').removeClass('i');
+            $(".current").find("i").addClass('i');
+
+            var flag = false
+            var html = ''
+            var inputName = this.value
+            var heroName
+            // 当请求成功，服务器响应的数据就在data里面
+            $.each(allHero, function (i, value) {
+                heroName = value.ukName
+                if (heroName.search(inputName) == 0) {
+                    flag = true
+                    html += '<li><a href="heroInfo.html?ukname='+ value.ukName +'" style="text-decoration: none"><img src="' + value.tinyImg + '"><p>' + value.ukName + '</p></a>'
+                }
+            })
+            if (!flag){
+                html += '<p style="color: red">未查询到此英雄，请检查您的输入。</p>'
+            }
+            $('.ulhero').html(html)
+        });
+
+    });
+</script>
+
+</html>

@@ -1,0 +1,374 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+
+    background: #f7f8f8;
+    padding-bottom: 80px;
+}
+#head{
+    background-image:url("//img.crawler.qq.com/lolwebschool/0/JAutoCMS_LOLWeb_a66a8bd2e17212da2e0715f39069ccc7/0/") ;
+    background-position:center ;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 360px;
+}
+.info-searchbox {
+
+    margin-left: 130px;
+    border-right: 1px solid #e5e5e5;
+    font: normal 12px/1.6em Microsoft YaHei,Tahoma,simsun;
+    color: #666;
+    padding: 0 10px 0 8px;
+    width: 24%;
+    display: inline-block;
+    height: 40px;
+    background: #fff;
+    box-shadow: -1px 0 3px rgba(0,0,0,.1) inset;
+}
+.input-search{
+    margin-top: 10px;
+    border-right: 1px solid #e5e5e5;
+    float: left;
+    width: 87%;
+    height: 20px;
+    line-height: 20px;
+    border: 0;
+    background: 0 0;
+    color: #999;
+    font-size: 100%;
+    outline: 0;
+    font: 12px/1.5 tahoma,'\5FAE\8F6F\96C5\9ED1',sans-serif;
+}
+.menu ul li{
+
+    display: block;
+
+}
+.span-c{
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+.span-e{
+    color: #aeaeae;
+    font-size: 11px;
+    margin-top: -1px;
+    letter-spacing: 1px;
+}
+.menu{
+    padding-top: 20px;
+    padding-left: 70px;
+    display: flex;
+    align-items: center;
+    background:rgba(0,0,0,0.3);
+}
+#droup{
+    padding-top: 30px;
+    padding-left: 300px;
+    padding-right: 300px;
+    display: none;
+    color: white;
+    font-size: 15px;
+    position: absolute;
+    left: 0px;
+    top: 70px;
+    height: 250px;
+    background:rgba(0,0,0,0.3);
+    text-align: left;
+}
+#droup li{
+    padding-top: 10px;
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+}
+
+.head li{
+     margin-left: 30px;
+     width: 133px;
+     height: 50px;
+     display: inline-block;
+ }
+#head li span{
+    color: white;
+    text-align: center;
+    display: block;
+
+}
+#checklist{
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 20px;
+}
+#checklist ul{
+    display: inline-block;
+
+}
+#checklist .select-item{
+
+    cursor: pointer;
+    height: 20px;
+    list-style-type: none;
+    text-align: center;
+
+    align-items: center;
+}
+
+
+#checklist .ms-radio {
+    margin-right: 3px;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#checklist .i{
+
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+
+    margin-bottom: 4px;
+    border: 1px solid #b1b1b1;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: rgb(0,163,131);
+}
+
+#checklist .select-item label{
+    color: #666666;
+    font-size: 12px;
+}
+.form-group input{
+    width: 400px;
+}
+.hero-box{
+    display: flex;
+    justify-content:center;
+    min-height:700px;
+    width: 78%;
+    padding-top: 100px;
+    box-sizing: border-box;
+    background: white;
+    margin: auto ;
+}
+
+.content{
+
+    min-height:700px;
+    width: 78%;
+    margin: auto;
+    padding-top: 30px;
+    padding-left: 50px;
+    box-sizing: border-box;
+    background: white;
+
+}
+
+.content .type{
+    color: #00a383;
+    font-size: 18px;
+    margin: 10px;
+
+}
+.content ul li {
+    display: inline-block;
+    width: 90px;
+    height: 100px;
+    margin-bottom: 22px;
+    text-align: center;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+.content ul li img {
+    width: 66px;
+    height: 65px;
+}
+
+.content ul li a{
+    color: #666;
+    font-size: 12px;
+}
+#skin-box{
+    position: relative;
+    width: 1240px;
+    height:632px;
+    margin: auto;
+    box-sizing: border-box;
+    background: white;
+
+}
+.main-img{
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    width: 1240px;
+    height:632px;
+}
+.left-list{
+    background: rgba(0,0,0,0.5);;
+    z-index: 999;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 305px;
+    height:632px;
+}
+.tiny-img{
+    z-index: 999;
+    float: right;
+    position: absolute;
+    right: 10px;
+    top: 530px;
+    width: 917px;
+    height:95px;
+}
+.main-bgimg{
+     width: 1240px;
+     height:632px;
+     z-index: 2;
+     position: absolute;
+     top: 0px;
+     left: 0px;
+ }
+.tiny-bgimg{
+    margin-right: 0px;
+    width: 60px;
+    height:60px;
+    float: right;
+    cursor:pointer;
+    opacity: 0.8
+
+}
+.active{
+    opacity: 1
+}
+.checked{
+    opacity: 1;
+    border: #00a483 5px solid;
+}
+.skin-name{
+    z-index: 999;
+    float: right;
+    position: absolute;
+    background: black;
+    right: 10px;
+    top: 490px;
+
+}
+.skin-name span{
+    padding: 3px;
+    font-size: 15px;
+     color: white;
+ }
+.defail-data{
+    padding-top: 80px;
+    padding-left: 40px;
+}
+.defail-data *{
+    text-align: left;
+    color: white;
+}
+#DATAname{
+    height: 5px;
+    font-size: 24px;
+    line-height: 25px;
+    padding-bottom: 25px;
+    font-weight: 400;
+
+}
+#DATAtitle{
+    font-size: 42px;
+    padding-bottom: 10px;
+
+}
+.defail-tags span {
+    float: left;
+    width: 35px;
+    height: 21px;
+    line-height: 21px;
+    margin-right: 5px;
+    text-align: center;
+    background: #00a483;
+    border-radius: 5px;
+}
+.defail-stat {
+    margin-top: 25px;
+    height: 90px;
+    width: 150px;
+}
+.defail-stat dt {
+    font: normal 12px/1.6em Microsoft YaHei,Tahoma,simsun;
+    float: left;
+    width: 40%;
+    margin-bottom: 5px;
+    height: 16px;
+    line-height: 16px;
+}
+.defail-stat dd {
+    float: left;
+    width: 60%;
+    margin: 2px 0 7px;
+    height: 12px;
+    background: #363c3c;
+}
+.defail-buy {
+    margin-top: 25px;
+}
+.commbtn-buy {
+    display: block;
+    width: 153px;
+    height: 40px;
+    overflow: hidden;
+    text-indent: -999em;
+    background-position: -638px 0;
+}
+.commspr {
+    background-repeat: no-repeat;
+    background-image: url(//game.gtimg.cn/images/lol/web201310/page.png?d=20131230);
+}
+.infotitle {
+    margin: 47px 0 15px;
+    font-size: 16px;
+    color: #338c7a;
+}
+.bgstroy {
+    width: 500px;
+    padding: 28px 32px;
+    font-size: 14px;
+    line-height: 24px;
+    text-indent: 2em;
+    margin-bottom: 80px;
+}
+.colbox {
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 0 2px rgba(0,0,0,.1);
+    background: #fff;
+}
+.wraper {
+    color: #666;
+}
+.defail-stat .up1 {
+    background: #f2c500;
+}
+.defail-stat .up {
+    display: block;
+    height: 12px;
+}
+.defail-stat .up2 {
+    background: #f59d00;
+}
+.defail-stat .up3 {
+    background: #2c97de;
+}
+.defail-stat .up4 {
+    background: #1eca6b;
+}

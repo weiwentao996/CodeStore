@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+</head>
+<body>
+<div id="head" class="head">
+
+
+    <ul class="menu">
+        <li><img src="https://ossweb-img.qq.com/images/lol/v3/logo.png"></li>
+        <a href="hero.html">
+            <li >
+                <span class="span-c">游戏资料</span>
+                <span class="span-e">GAME INFO</span>
+            </li>
+        </a>
+        <li >
+            <span class="span-c">商城/合作</span>
+            <span class="span-e">STORE</span>
+        </li>
+        <li>
+            <span class="span-c">社区互动</span>
+            <span class="span-e">COMMUNITY</span>
+
+        </li>
+        <li>
+            <span class="span-c">赛事官网</span>
+            <span class="span-e">ESPORTS</span>
+        </li>
+        <li>
+            <span class="span-c">自助系统</span>
+            <span class="span-e">SYSTEM</span>
+        </li>
+        <a href="addHero.html">
+            <li >
+                <span class="span-c">插入英雄</span>
+                <span class="span-e">ADD HERO</span>
+            </li>
+        </a>
+        <ul class="droup" id="droup">
+            <li>英雄资料库</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+            <li>英雄列表</li>
+        </ul>
+    </ul>
+</div>
+<div class="hero-box">
+    <!--涉及到表单中包含文件的，必须要使用enctype="multipart/form-data"-->
+    <form action="/lolherolist/addHero.do" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="ukname">英雄名称</label>
+            <input type="text" class="form-control" name="ukname" id="ukname" placeholder="请输入英雄名称">
+        </div>
+        <div class="form-group">
+            <label for="nickname">英雄昵称</label>
+            <input type="text" class="form-control" name="nickname" id="nickname" placeholder="请输入英雄昵称">
+        </div>
+        <div class="form-group">
+            <label for="tinyimg">头像上传</label>
+            <input type="file" id="tinyimg" name="tinyimg">
+            <p class="help-block">请选择需要上传的英雄图片。</p>
+        </div>
+        <!--  <div class="checkbox">
+              <label>
+                  <input type="checkbox"> Check me out
+              </label>
+          </div>-->
+        <button type="submit" class="btn btn-default">提交</button>
+    </form>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/myjs.js" rel="script" ></script>
+</body>
+</html>
