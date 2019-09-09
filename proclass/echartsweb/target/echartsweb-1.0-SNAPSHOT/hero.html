@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #checklist{
+
+        }
+        #checklist .select-item{
+            float: left;
+            cursor: pointer;
+            height: 20px;
+            list-style-type: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+
+
+        #checklist .ms-radio {
+            margin-right: 3px;
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 1px solid #b1b1b1;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #checklist .i{
+
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+
+            margin-bottom: 4px;
+            border: 1px solid #b1b1b1;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: rgb(0,163,131);
+        }
+
+        #checklist .select-item label{
+            color: #666666;
+            font-size: 12px;
+        }
+
+
+        .content{
+            width: 100%;
+            padding: 30px;
+            box-sizing: border-box;
+
+        }
+        .content ul li {
+            float: left;
+            width: 90px;
+            height: 100px;
+            margin-bottom: 22px;
+            text-align: center;
+            cursor: pointer;
+            list-style-type: none;
+        }
+
+        .content ul li img {
+            width: 66px;
+            height: 65px;
+        }
+
+        .content ul li a{
+            color: #666;
+            font-size: 12px;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+<div id="content" class="content">
+
+<div id="checklist">
+    <ul>
+        <li class="select-item current">
+            <span class="ms-radio"> <i class="i"></i></span>
+            <label>All</label>
+        </li>
+        <li class="select-item">
+            <span class="ms-radio"><i ></i></span>
+            <label>mage</label>
+        </li>
+        <li class="select-item">
+            <span class="ms-radio"><i ></i></span>
+            <label>fighter</label>
+        </li>
+        <li class="select-item">
+            <span class="ms-radio"><i ></i></span>
+            <label>marksman</label>
+        </li>
+        <li class="select-item">
+            <span class="ms-radio"><i ></i></span>
+            <label>tank</label>
+        </li>
+        <li class="select-item">
+            <span class="ms-radio"><i ></i></span>
+            <label>assassin</label>
+        </li>
+        <li class="select-item">
+            <span class="ms-radio"><i ></i></span>
+            <label>support</label>
+
+        </li>
+    </ul>
+    <div style="clear: both"></div>
+</div>
+
+    <ul class="ulhero">
+
+    </ul>
+</div>
+
+</body>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script>
+    // 浏览器（客户端）与服务器交互数据的格式：JSON,XML
+    // 发送请求到服务器，服务器会响应给浏览器数据，数据的格式便是JSON
+    // {key1:value1,key2:value2,key:value3} 表示的是一个对象
+    // {name:'张三',address:"苏州市",age:20}  单个学生对象
+    //  [{name:'张三',address:"苏州市",age:20} ,{name:'李四',address:"苏州市",age:20} ,{name:'王五',address:"苏州市",age:20} ]   
+    //  多个学生对象
+    $.ajax({
+        url:"http://localhost:8080/echartsweb/queryHero.do",
+        type:"get",
+        dataType:"json",  // text-》data(string)    json->(js中的json对象)
+
+        success:function (data) {
+            allData = data
+            var html = ''
+            // 当请求成功，服务器响应的数据就在data里面
+            $.each(data,function (i,value) {
+
+                    html += '<li><a><img src="' + value.tinyImg + '"><p>' + value.ukName + '</p></a>'
+            })
+            $('.ulhero').html(html)
+        }
+    })
+    var allData
+    function showHero(selectType) {
+        html = ''
+        $.each(allData,function (i,value) {
+            var one = selectType
+            var two = value.heroType
+            if (selectType == "All"){
+
+
+
+                html += '<li><a><img src="' + value.tinyImg + '"><p>' + value.ukName + '</p></a>'
+            } else   if (one == two) {
+                html += '<li><a><img src="' + value.tinyImg + '"><p>' + value.ukName + '</p></a>'
+            }
+        })
+        $('.ulhero').html(html)
+    }
+    $('#checklist li').click(function () {
+        $(this).siblings('li').find('i').removeClass('i');
+        $(this).find("i").addClass('i');
+        showHero($(this).find("label").text())
+    })
+</script>
+
+</html>

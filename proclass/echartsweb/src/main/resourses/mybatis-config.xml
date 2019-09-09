@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--properties文件或者在properties中配置，都是键值对的配置方式
+        name = value        name = " "  value = " "
+        如果需要在该文件中访问其中的值，需要通过${}来进行访问
+    -->
+    <properties resource="jdbc.properties">
+    </properties>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true" />
+        <setting name="aggressiveLazyLoading" value="false" />
+    </settings>
+
+    <typeAliases>
+        <package name="com.hero.pojo"></package>
+    </typeAliases>
+
+
+    <!--<plugins>-->
+        <!--&lt;!&ndash; com.github.pagehelper为PageHelper类所在包名 &ndash;&gt;-->
+        <!--<plugin interceptor="com.github.pagehelper.PageInterceptor">-->
+
+        <!--</plugin>-->
+    <!--</plugins>-->
+
+
+
+    <!-- 数据库 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driverClass}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <package name="com.hero.mapper"></package>
+    </mappers>
+
+</configuration>

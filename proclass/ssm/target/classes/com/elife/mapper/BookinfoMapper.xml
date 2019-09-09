@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elife.mapper.BookinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.elife.pojo.Bookinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="book_name" property="bookName" jdbcType="VARCHAR" />
+    <result column="book_img" property="bookImg" jdbcType="VARCHAR" />
+    <result column="book_now_price" property="bookNowPrice" jdbcType="VARCHAR" />
+    <result column="book_pre_price" property="bookPrePrice" jdbcType="VARCHAR" />
+    <result column="book_discount" property="bookDiscount" jdbcType="VARCHAR" />
+    <result column="book_author" property="bookAuthor" jdbcType="VARCHAR" />
+    <result column="book_publish" property="bookPublish" jdbcType="VARCHAR" />
+    <result column="book_publish_date" property="bookPublishDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.elife.pojo.Bookinfo" extends="BaseResultMap" >
+    <result column="book_detail" property="bookDetail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, book_name, book_img, book_now_price, book_pre_price, book_discount, book_author, 
+    book_publish, book_publish_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    book_detail
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.elife.pojo.BookinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from bookinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.BookinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bookinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from bookinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bookinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.elife.pojo.BookinfoExample" >
+    delete from bookinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.elife.pojo.Bookinfo" >
+    insert into bookinfo (id, book_name, book_img, 
+      book_now_price, book_pre_price, book_discount, 
+      book_author, book_publish, book_publish_date, 
+      book_detail)
+    values (#{id,jdbcType=INTEGER}, #{bookName,jdbcType=VARCHAR}, #{bookImg,jdbcType=VARCHAR}, 
+      #{bookNowPrice,jdbcType=VARCHAR}, #{bookPrePrice,jdbcType=VARCHAR}, #{bookDiscount,jdbcType=VARCHAR}, 
+      #{bookAuthor,jdbcType=VARCHAR}, #{bookPublish,jdbcType=VARCHAR}, #{bookPublishDate,jdbcType=VARCHAR}, 
+      #{bookDetail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.elife.pojo.Bookinfo" >
+    insert into bookinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="bookImg != null" >
+        book_img,
+      </if>
+      <if test="bookNowPrice != null" >
+        book_now_price,
+      </if>
+      <if test="bookPrePrice != null" >
+        book_pre_price,
+      </if>
+      <if test="bookDiscount != null" >
+        book_discount,
+      </if>
+      <if test="bookAuthor != null" >
+        book_author,
+      </if>
+      <if test="bookPublish != null" >
+        book_publish,
+      </if>
+      <if test="bookPublishDate != null" >
+        book_publish_date,
+      </if>
+      <if test="bookDetail != null" >
+        book_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bookName != null" >
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookImg != null" >
+        #{bookImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bookNowPrice != null" >
+        #{bookNowPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPrePrice != null" >
+        #{bookPrePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDiscount != null" >
+        #{bookDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPublish != null" >
+        #{bookPublish,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPublishDate != null" >
+        #{bookPublishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDetail != null" >
+        #{bookDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.elife.pojo.BookinfoExample" resultType="java.lang.Integer" >
+    select count(*) from bookinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bookinfo
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookName != null" >
+        book_name = #{record.bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookImg != null" >
+        book_img = #{record.bookImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookNowPrice != null" >
+        book_now_price = #{record.bookNowPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookPrePrice != null" >
+        book_pre_price = #{record.bookPrePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookDiscount != null" >
+        book_discount = #{record.bookDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookAuthor != null" >
+        book_author = #{record.bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookPublish != null" >
+        book_publish = #{record.bookPublish,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookPublishDate != null" >
+        book_publish_date = #{record.bookPublishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookDetail != null" >
+        book_detail = #{record.bookDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update bookinfo
+    set id = #{record.id,jdbcType=INTEGER},
+      book_name = #{record.bookName,jdbcType=VARCHAR},
+      book_img = #{record.bookImg,jdbcType=VARCHAR},
+      book_now_price = #{record.bookNowPrice,jdbcType=VARCHAR},
+      book_pre_price = #{record.bookPrePrice,jdbcType=VARCHAR},
+      book_discount = #{record.bookDiscount,jdbcType=VARCHAR},
+      book_author = #{record.bookAuthor,jdbcType=VARCHAR},
+      book_publish = #{record.bookPublish,jdbcType=VARCHAR},
+      book_publish_date = #{record.bookPublishDate,jdbcType=VARCHAR},
+      book_detail = #{record.bookDetail,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bookinfo
+    set id = #{record.id,jdbcType=INTEGER},
+      book_name = #{record.bookName,jdbcType=VARCHAR},
+      book_img = #{record.bookImg,jdbcType=VARCHAR},
+      book_now_price = #{record.bookNowPrice,jdbcType=VARCHAR},
+      book_pre_price = #{record.bookPrePrice,jdbcType=VARCHAR},
+      book_discount = #{record.bookDiscount,jdbcType=VARCHAR},
+      book_author = #{record.bookAuthor,jdbcType=VARCHAR},
+      book_publish = #{record.bookPublish,jdbcType=VARCHAR},
+      book_publish_date = #{record.bookPublishDate,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.elife.pojo.Bookinfo" >
+    update bookinfo
+    <set >
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookImg != null" >
+        book_img = #{bookImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bookNowPrice != null" >
+        book_now_price = #{bookNowPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPrePrice != null" >
+        book_pre_price = #{bookPrePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDiscount != null" >
+        book_discount = #{bookDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        book_author = #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPublish != null" >
+        book_publish = #{bookPublish,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPublishDate != null" >
+        book_publish_date = #{bookPublishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDetail != null" >
+        book_detail = #{bookDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.elife.pojo.Bookinfo" >
+    update bookinfo
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      book_img = #{bookImg,jdbcType=VARCHAR},
+      book_now_price = #{bookNowPrice,jdbcType=VARCHAR},
+      book_pre_price = #{bookPrePrice,jdbcType=VARCHAR},
+      book_discount = #{bookDiscount,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      book_publish = #{bookPublish,jdbcType=VARCHAR},
+      book_publish_date = #{bookPublishDate,jdbcType=VARCHAR},
+      book_detail = #{bookDetail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.elife.pojo.Bookinfo" >
+    update bookinfo
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      book_img = #{bookImg,jdbcType=VARCHAR},
+      book_now_price = #{bookNowPrice,jdbcType=VARCHAR},
+      book_pre_price = #{bookPrePrice,jdbcType=VARCHAR},
+      book_discount = #{bookDiscount,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      book_publish = #{bookPublish,jdbcType=VARCHAR},
+      book_publish_date = #{bookPublishDate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="echarts" />
+        <module name="echartsweb" />
+        <module name="spring" />
+        <module name="springmvc" />
+        <module name="ssm" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="echarts" target="1.5" />
+      <module name="echartsweb" target="6" />
+      <module name="spring" target="1.7" />
+      <module name="springmvc" target="1.5" />
+      <module name="ssm" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

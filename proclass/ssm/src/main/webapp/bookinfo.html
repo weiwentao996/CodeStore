@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/ssm/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/ssm/css/base.css">
+</head>
+<body>
+
+<div class="container">
+
+
+    <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+        <span class="input-group-addon" id="sizing-addon1">@</span>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" name="def" class="btn btn-default">综合</button>
+        <button type="button" class="btn btn-default">销量</button>
+        <button type="button" name="date" class="btn btn-default">出版日期</button>
+        <button type="button" name="pice" class="btn btn-default">价格</button>
+    </div>
+
+
+    <table class="table table-bordered">
+        <tr>
+            <th>图片</th>
+            <th>书名</th>
+            <th>现价</th>
+            <th>原价</th>
+            <th>作者</th>
+        </tr>
+
+    </table>
+</div>
+
+</body>
+
+
+<script src="/ssm/jquery/jquery-3.4.1.js"></script>
+
+<script>
+    $(".btn").click(function () {
+        $.get({
+            url:"/ssm/book/orderbyprice.do",
+            dataType:"json",
+            success:function (data) {
+                $('table tr').remove()
+                if(data.code == 0){
+                    // 对数据进行处理
+                    for (var i = 0; i < data.data.length ;i++) {
+                        $('table').append(
+                            // js访问数据的方式${}
+                            `
+                     <tr>
+                        <td><img src="${data.data[i].bookImg}"></img></td>
+                        <td>${data.data[i].bookName}</td>
+                        <td>${data.data[i].bookNowPrice}</td>
+                        <td>${data.data[i].bookPrePrice}</td>
+                        <td>${data.data[i].bookAuthor}</td>
+                    </tr>
+                     ` )
+
+                    }
+                } else {
+                    console.log(date.message)
+                }
+            }
+        })
+    })
+    $.get({
+        url:"/ssm/book/showallbook.do",
+        dataType:"json",
+        success:function (data) {
+             if(data.code == 0){
+                 // 对数据进行处理
+                 for (var i = 0; i < data.data.length ;i++) {
+                     $('table').append(
+                         // js访问数据的方式${}
+                         `
+                     <tr>
+                        <td><img src="${data.data[i].bookImg}"></img></td>
+                        <td>${data.data[i].bookName}</td>
+                        <td>${data.data[i].bookNowPrice}</td>
+                        <td>${data.data[i].bookPrePrice}</td>
+                        <td>${data.data[i].bookAuthor}</td>
+                    </tr>
+                     ` )
+
+                 }
+             } else {
+                 console.log(date.message)
+             }
+        }
+    })
+
+
+</script>
+
+</html>

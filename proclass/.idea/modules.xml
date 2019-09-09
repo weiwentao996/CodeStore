@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/echarts/echarts.iml" filepath="$PROJECT_DIR$/echarts/echarts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/echartsweb/echartsweb.iml" filepath="$PROJECT_DIR$/echartsweb/echartsweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/proclass.iml" filepath="$PROJECT_DIR$/proclass.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring/spring.iml" filepath="$PROJECT_DIR$/spring/spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springmvc/springmvc.iml" filepath="$PROJECT_DIR$/springmvc/springmvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm/ssm.iml" filepath="$PROJECT_DIR$/ssm/ssm.iml" />
+    </modules>
+  </component>
+</project>

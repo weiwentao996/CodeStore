@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.baidu</groupId>
+    <artifactId>echarts</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!--配置依赖，自动根据以上三个值到中央仓库下载相关jar包，导入我们的工程中
+    下载相关jar包，保存在那里？idea中有默认的maven，采用默认的配置
+    要将其修改为我们自己之前解压的maven，配置相关jar包保存路径 与jar包的镜像下载地址
+    settings.xml
+    localRepository-》配置的本地仓库，即下载的jar包的保存位置
+    这个文件夹会随着项目引用的jar包，越来越多，越来越大，所以不建议放在C盘
+    mirror-》阿里云镜像，jar包的镜像下载地址，默认是中央仓库下载，有些慢
+    所以配置国内的镜像服务器，作为其下载地址
+    配置怎样与idea关联？
+    -->
+
+
+</project>

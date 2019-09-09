@@ -1,0 +1,9 @@
+server:
+  port: 8089
+spring:
+  devtools:
+    restart:
+      additional-paths: src/main/java
+      enabled: true
+    thymeleaf:
+      cache: true
