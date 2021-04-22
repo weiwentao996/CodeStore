@@ -13,7 +13,7 @@
     <spring.version>5.1.5.RELEASE</spring.version>
     <commons.logging>1.2</commons.logging>
 
-    <mybatis>3.5.2</mybatis>
+    <mybatis>3.5.6</mybatis>
     <mysql.connector>5.1.47</mysql.connector>
     <log4j>1.2.17</log4j>
 
