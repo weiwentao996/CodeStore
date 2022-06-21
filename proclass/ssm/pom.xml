@@ -14,7 +14,7 @@
     <commons.logging>1.2</commons.logging>
 
     <mybatis>3.5.2</mybatis>
-    <mysql.connector>5.1.47</mysql.connector>
+    <mysql.connector>8.0.28</mysql.connector>
     <log4j>1.2.17</log4j>
 
     <mybatis.spring>2.0.1</mybatis.spring>
